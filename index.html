@@ -1,0 +1,55 @@
+<?php
+	/* CONNESSIONE AL DB*/
+	$con = @mysqli_connect('localhost','root','','istruttori');
+
+	if (mysqli_connect_errno())
+	{
+		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+	}
+
+	/* ESECUZIONE QUERY */
+	$sql = "SELECT distinct Cognome
+			FROM istruttore
+			ORDER BY Cognome";
+
+	$result = mysqli_query($con,$sql);
+?>
+
+
+<!doctype html>
+<html lang="it">
+<head>
+	<title>Istruttori</title>
+</head>
+
+<body>
+	<h1>Trova il tuo istruttore:</h1>
+	<br>
+	<form name="ricerca_istruttori" action="Risposta.php" method="GET">
+		<select name="Cognome">
+			<?php 
+			while($row = mysqli_fetch_array($result)) {			
+				echo"<option>";
+				echo $row;
+				echo"</option>";
+			}
+			?>
+		</select>
+		
+		<select name="Giorno">
+			<option value="lun">Lunedì</option>
+			<option value="mar">Martedì</option>
+			<option value="mer">Mercoledì</option>
+			<option value="gio">Giovedì</option>
+			<option value="ven">Venerdì</option>
+			<option value="sab">Sabato</option>
+			<option value="dom">Domenica</option>
+		</select>
+		
+		<input type="submit" name="invia" value="Sottometti la richiesta" />
+		<input type="reset" name="annulla" value="Annulla la richiesta" />
+		
+	</form>
+</body>
+
+</html>
