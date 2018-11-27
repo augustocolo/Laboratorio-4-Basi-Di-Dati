@@ -14,23 +14,20 @@
 
 <body>
 <?php
+	// CONNESSIONE
+	require ('connessione.php');
+	$con = connessione('localhost','root','istruttori');
+	
+	//RICHIESTE
 	$cognome = $_REQUEST["Cognome"];
 	$giorno = $_REQUEST["Giorno"];
 	echo $cognome;
 	echo $giorno;
-	$sql = "SELECT 
-				P.Giorno, P.OraI, P.OraF, A.Nome, A.TipoA, A.Livello 
-			FROM 
-				Attivita A, Programma P, Istruttore I
-			WHERE
-				I.Cognome = '$cognome' AND
-				P.Giorno = '$giorno' AND
-				A.CodA = P.CodA AND I.CodFisc = P.CodFisc
-			ORDER BY
-				A.Livello, A.Nome";
-	$result = mysqli_query($con,$sql);
-
 	
+	//SQL
+	$sql = file_get_contents("QueryRichiesta.sql");
+	$result = mysqli_query($con,$sql) or die("Bad SQL: $sql");;
+
 	// DISPLAY TABLE
 	echo "<table border='1'>";
 	echo "<tr> <td>Giorno</td> <td>Ora Inizio</td> <td>Ora Fine</td> <td>Nome Attività</td> <td>Tipo</td> <td>Livello</td> </tr>";

@@ -1,21 +1,3 @@
-<?php
-	/* CONNESSIONE AL DB*/
-	$con = @mysqli_connect('localhost','root','','istruttori');
-
-	if (mysqli_connect_errno())
-	{
-		echo "Failed to connect to MySQL: " . mysqli_connect_error();
-	}
-
-	/* ESECUZIONE QUERY */
-	$sql = "SELECT distinct Cognome
-			FROM istruttore
-			ORDER BY Cognome";
-
-	$result = mysqli_query($con,$sql);
-?>
-
-
 <!doctype html>
 <html lang="it">
 <head>
@@ -27,12 +9,19 @@
 	<br>
 	<form name="ricerca_istruttori" action="Risposta.php" method="GET">
 		<select name="Cognome">
-			<?php 
-			while($row = mysqli_fetch_array($result)) {			
-				echo"<option>";
-				echo $row;
-				echo"</option>";
-			}
+			<?php
+				// CONNESSIONE
+				require ('connessione.php');
+				$con = connessione('localhost','root','istruttori');
+				
+				// ESECUZIONE QUERY
+				$sql = file_get_contents("QueryOpzione.sql");
+				$result = mysqli_query($con,$sql) or die("Bad SQL: $sql");
+				
+				// SHOW OPTIONS
+				while($row = mysqli_fetch_row($result)) {
+					echo "<options value = '$row[0]'> $row[0] </options>";
+				}				
 			?>
 		</select>
 		
