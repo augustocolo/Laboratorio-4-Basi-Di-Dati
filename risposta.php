@@ -16,7 +16,9 @@
 <?php
 	// CONNESSIONE
 	require ('connessione.php');
-	$con = connessione('localhost','root','istruttori');
+	require ('credenzialilocalhost.php');
+	$cred = credenziali();
+	$con = connessione($cred[0],$cred[1],$cred[2],$cred[3]);
 	
 	//RICHIESTE
 	$cognome = $_REQUEST["Cognome"];

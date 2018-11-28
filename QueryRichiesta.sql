@@ -11,4 +11,4 @@ WHERE
 	A.CodA = P.CodA AND I.CodFisc = P.CodFisc
 	
 ORDER BY
-	A.Livello, A.Nome
+	A.Livello, A.Nome;
