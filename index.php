@@ -9,22 +9,24 @@
 	<br>
 	<form name="ricerca_istruttori" action="Risposta.php" method="GET">
 		<select name="Cognome">
-			<?php
-				// CONNESSIONE
-				require ('connessione.php');
+            <?php
+                // CONNESSIONE 
+                require ('connessione.php');
 				require ('credenzialilocalhost.php');
 				$cred = credenziali();
-				$con = connessione($cred[0],$cred[1],$cred[2],$cred[3]);
-				
+				$con = connessione();
+				// $cred[0],$cred[1],$cred[2],$cred[3]
 				// ESECUZIONE QUERY
 				$sql = file_get_contents("QueryOpzione.sql");
 				$result = mysqli_query($con,$sql) or die("Bad SQL: $sql");
+                $i = 0;
 				
 				// SHOW OPTIONS
 				while($row = mysqli_fetch_row($result)) {
-					echo "<options value = '$row[0]'> $row[0] </options>";
+					echo '<options value = "$row"> $row </options>';
 				}				
 			?>
+			
 		</select>
 		
 		<select name="Giorno">

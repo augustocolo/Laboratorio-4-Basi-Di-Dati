@@ -1,15 +1,8 @@
-<?php	/* CONNESSIONE AL DB*/
-	$con = @mysqli_connect('localhost','root','','istruttori');
-	if (mysqli_connect_errno())
-	{
-		echo "Failed to connect to MySQL: " . mysqli_connect_error();
-	}
-?>
-
 <!doctype html>
 <html lang="it">
 <head>
 	<title>Risposta</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -20,6 +13,7 @@
 	$cred = credenziali();
 	$con = connessione($cred[0],$cred[1],$cred[2],$cred[3]);
 	
+	
 	//RICHIESTE
 	$cognome = $_REQUEST["Cognome"];
 	$giorno = $_REQUEST["Giorno"];
@@ -27,8 +21,9 @@
 	echo $giorno;
 	
 	//SQL
-	$sql = file_get_contents("QueryRichiesta.sql");
-	$result = mysqli_query($con,$sql) or die("Bad SQL: $sql");;
+	$sql = "SELECT P.Giorno, P.OraI, P.OraF, A.Nome, A.TipoA, A.Livello FROM Attivita A, Programma P, Istruttore I WHERE I.Cognome = 'Bruni' AND P.Giorno = 'mar' AND A.CodA = P.CodA AND I.CodFisc = P.CodFisc ORDER BY A.Livello, A.Nome";
+    $sql = "SELECT * FROM attivita;";
+	$result = mysqli_query($con,$sql) or die(mysqli_error($con));
 
 	// DISPLAY TABLE
 	echo "<table border='1'>";
@@ -37,6 +32,7 @@
 		echo "<tr> <td>$row[0]</td> <td>$row[1]</td> <td>$row[2]</td> <td>$row[3]</td> <td>$row[4]</td> <td>$row[5]</td> </tr>";
 	}
 	echo "</table>";
+	mysqli_close($con);
 ?>
 </body>
 
