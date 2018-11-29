@@ -1,7 +1,9 @@
+
 <!doctype html>
 <html lang="it">
 <head>
 	<title>Istruttori</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -13,9 +15,9 @@
                 // CONNESSIONE 
                 require ('connessione.php');
 				require ('credenzialilocalhost.php');
+                require ('repo/htmlphp.php');
 				$cred = credenziali();
-				$con = connessione();
-				// $cred[0],$cred[1],$cred[2],$cred[3]
+				$con = connessione($cred[0],$cred[1],$cred[2],$cred[3]);
 				// ESECUZIONE QUERY
 				$sql = file_get_contents("QueryOpzione.sql");
 				$result = mysqli_query($con,$sql) or die("Bad SQL: $sql");
@@ -23,7 +25,9 @@
 				
 				// SHOW OPTIONS
 				while($row = mysqli_fetch_row($result)) {
-					echo '<options value = "$row"> $row </options>';
+                    echo "<option value =\"".$row[0]."\">";
+                    echo $row[0];
+					echo "</option> ";
 				}				
 			?>
 			

@@ -9,6 +9,4 @@
             echo "<options value = '$val'>$ref</options>";
         }
     }
-
-    function table ($border,)
 ?>
