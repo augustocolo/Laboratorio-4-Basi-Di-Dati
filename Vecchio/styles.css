@@ -1,0 +1,36 @@
+body {
+   background-color: beige; 
+}
+
+a {
+  text-decoration: none;
+}
+
+h1 {
+    
+    
+}
+#logo {
+    background-color: #282828;
+    width 100%;
+    color: #d7d7d7;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+}
+p {
+    color:indianred;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+tr:nth-child(odd){background-color: #e0e0e0}

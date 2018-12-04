@@ -1,52 +1,20 @@
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="it">
-<head>
-	<title>Istruttori</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
 
-<body>
-	<h1>Trova il tuo istruttore:</h1>
-	<br>
-	<form name="ricerca_istruttori" action="Risposta.php" method="GET">
-		<select name="Cognome">
-            <?php
-                // CONNESSIONE 
-                require ('connessione.php');
-				require ('credenzialilocalhost.php');
-                require ('repo/htmlphp.php');
-				$cred = credenziali();
-				$con = connessione($cred[0],$cred[1],$cred[2],$cred[3]);
-				// ESECUZIONE QUERY
-				$sql = file_get_contents("QueryOpzione.sql");
-				$result = mysqli_query($con,$sql) or die("Bad SQL: $sql");
-                $i = 0;
-				
-				// SHOW OPTIONS
-				while($row = mysqli_fetch_row($result)) {
-                    echo "<option value =\"".$row[0]."\">";
-                    echo $row[0];
-					echo "</option> ";
-				}				
-			?>
-			
-		</select>
-		
-		<select name="Giorno">
-			<option value="lun">Lunedì</option>
-			<option value="mar">Martedì</option>
-			<option value="mer">Mercoledì</option>
-			<option value="gio">Giovedì</option>
-			<option value="ven">Venerdì</option>
-			<option value="sab">Sabato</option>
-			<option value="dom">Domenica</option>
-		</select>
-		
-		<input type="submit" name="invia" value="Sottometti la richiesta" />
-		<input type="reset" name="annulla" value="Annulla la richiesta" />
-		
-	</form>
+<?php
+    require ("repo/htmlphp.php");
+    bootstrap_page_init("Home"); 
+?>
+    
+<div class="container-fluid">
+
+  <h1>Hello World!</h1>
+  <p>Resize the browser window to see the effect.</p>
+  <p>The columns will automatically stack on top of each other when the screen is less than 576px wide.</p>
+  <div class="row">
+    <div class="col-sm-12" style="background-color:lavender;">.col-sm-4</div>
+    </div>
+</div>
+    
 </body>
-
 </html>
