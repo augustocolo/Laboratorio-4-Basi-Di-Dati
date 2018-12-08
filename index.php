@@ -3,8 +3,13 @@
 
 <?php
     require ("repo/htmlphp.php");
-    bootstrap_page_init("Home"); 
+    bootstrap_head("Home"); 
 ?>
+    <body>
+        <?php
+        bootstrap_header();
+        bootstrap_errorBar();
+        ?>
     
 <div class="container-fluid">
 

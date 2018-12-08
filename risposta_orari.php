@@ -30,24 +30,28 @@
 <!DOCTYPE html>
 <html lang="it">
     <?php
-        //HEAD+NAVBAR
-        bootstrap_page_init("Ricerca orari di ".$cognome." il ".$giorno);
+        //HEAD
+        bootstrap_head("Ricerca orari di ".$cognome." il ".$giorno);
         $result=mysqli_query($con,$sql);
+        //DA NORMALIZZARE CON HIDDEN RESPONSE
         if($result == FALSE){
             echo "<div class=\"alert alert-danger\"> <strong>ERRORE</strong>";
             echo mysqli_error($con);
             echo "</div>";
         }
     ?>
+    <body>
+        <?php
+        bootstrap_header();
+        bootstrap_errorBar();
+        ?>
     
             <div class="container-fluid">
 
           <h1>Cerca il tuo istruttore</h1>
-          <p>Resize the browser window to see the effect.</p>
-          <p>The columns will automatically stack on top of each other when the screen is less than 576px wide.</p>
             <div class="row">
-                <div class="col-sm-4">
-                    <table class="table table-striped">
+                <div class="col-sm-12">
+                    <table class="table table-striped table-responsive">
                         <tr>
                             <th>Giorno</th>
                             <th>Ora Inizio</th>
@@ -68,9 +72,7 @@
                     ?>
                     </table>
                 </div>
-                <div class="col-sm-8">
-                  
-                </div>
+                
                             
             </div>
         </div>

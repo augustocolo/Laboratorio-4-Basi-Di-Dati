@@ -50,7 +50,7 @@
             // DISPLAY TABLE
             echo "<table>";
             echo "<tr> <td>Giorno</td> <td>Ora Inizio</td> <td>Ora Fine</td> <td>Nome Attività</td> <td>Tipo</td> <td>Livello</td> </tr>";
-        if(mysqli_num_rows($result)){
+            if(mysqli_num_rows($result)){
             $table = queryToArray($result);
             table_gen($table);
                 /*while($row = mysqli_fetch_array($result)) {

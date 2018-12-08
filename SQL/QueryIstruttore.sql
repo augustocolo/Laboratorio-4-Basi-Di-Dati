@@ -1,0 +1,2 @@
+SELECT CodFisc
+FROM Istruttore;

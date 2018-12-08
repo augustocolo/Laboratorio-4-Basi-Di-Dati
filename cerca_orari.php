@@ -18,8 +18,13 @@
 
     <?php
         //HEAD + NAVBAR
-        bootstrap_page_init("Cerca Orari");
+        bootstrap_head("Cerca Orari");
     ?>
+    <body>
+        <?php
+        bootstrap_header();
+        bootstrap_errorBar();
+        ?>
 
         <div class="container-fluid">
 
@@ -27,14 +32,11 @@
           <p>Resize the browser window to see the effect.</p>
           <p>The columns will automatically stack on top of each other when the screen is less than 576px wide.</p>
             <div class="row">
-                <div class="col-sm-4">
-                    <p>Sue rimasto ansiosi disteso tre vederla. Se ne scolpire alterata acerbita scompare sa apparire smarrito.</p> <p>Le amarezza grappoli io mokattam ciascuno visibile esercita. Mai dono ride vedo che ogni crea. Sole luce vidi hai vedo onda pare gli. Con guardavamo appartiene uno sofferenza. Due monte mai scese sorso all legge tocco sia. </p>
-                </div>
                 <div class="col-sm-8">
                    <form name="ricercaistruttori" action="risposta_orari.php" method="GET">
                        <div class="form-group">
                            <label for="cognome">Cognome dell'istruttore:</label>
-                           <select name="cognome">
+                           <select name="cognome" class="form-control">
                                 <?php
                                     dropdown($array,$array);
                                 ?>
@@ -42,7 +44,7 @@
                        </div>
                        <div class="form-group">
                            <label for="giorno">Giorno:</label>
-                           <select name="giorno">
+                           <select name="giorno" class="form-control">
                                 <option value="lun">Lunedì</option>
                                 <option value="mar">Martedì</option>
                                 <option value="mer">Mercoledì</option>
